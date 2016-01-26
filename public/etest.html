@@ -10,8 +10,7 @@
     background-color: #ffffff;
     height:80%;
     width:60%;
-    left: 20%;
-    right: auto;
+    right: 5%;
     font-family: Segoe UI,Helvetica,Arial,sans-serif;
     font-size: 9.75pt;
     float: right;
@@ -56,6 +55,7 @@
     border: solid 1px transparent;
     text-decoration: none;
     display: block;
+    float: left;
     height: 20px;
     width: 50px;
     padding: 3px 8px;
@@ -81,7 +81,12 @@
 </div>
 <div id="MainPg">
 <div class="NavPn">
-<select
+
+<select id="TestSet" name="testSet">
+    <option>Select Test</option>
+</select>
+
+
 </div>
 <div class="center">
 
@@ -89,7 +94,13 @@
   <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(&quot;_e_onclick&quot;), event)" _e_onclick="logOff();">
 					<span class="userTileTxt">sign out</span>
 				</a>
+                <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(&quot;_e_onclick&quot;), event)" _e_onclick="logOff();">
+                    <span class="userTileTxt">end test</span>
+                </a>
 </div>
 </div>
+<script src="/js/jquery-2.2.0.min.js"></script>
+    <script src="/js/socket.io-1.4.4.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>

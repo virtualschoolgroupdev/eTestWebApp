@@ -17,20 +17,6 @@ module.exports = db;
 
 // var ETest = 
 
-sequelize.sync({force: true}).then(function(){
-	// ETest.create({
-	// 	qClass:'12',
-	// 	qDOI: '08-01-2015',
-	// 	qSubject: 'BIO',
-	// 	qTextId: '1',
-	// 	qOptionsId:'1',
-	// 	qAnswerId:'1'
-	// }).then(function(){
-	// 	console.log("created");
-	// }).catch(function(e){
-	// 	console.log("error!");
-	// 	console.log(e);
-
-	// });
-	console.log("everytihg is set");
+sequelize.sync().then(function(){
+	console.log("everytihg is set!");
 })
