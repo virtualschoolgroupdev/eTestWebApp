@@ -21,6 +21,7 @@ var packageName = fileName.split('.ET.')[1].split('.')[0];
 var chapter = fileName.split('.'+packageName+'.')[1];
 var testId = null;
 var objTest = {};
+var global_socket = null;
 objTest.qClass = classNum;
 objTest.qDOI = Doi;
 objTest.qPackage = packageName;
@@ -32,7 +33,7 @@ res.send("We got this test!");
 });
 
 
-io.on('connection',function(socket){
+ io.on('connection',function(socket){
 	console.log('User connection via socket::Server message');
 		db.eTest.findAll().then(function(obj){
 			var objJSON = JSON.stringify(obj);
@@ -42,7 +43,26 @@ io.on('connection',function(socket){
 		});
 
 		});
+
+		socket.on('populateTest',function(obj){
+			db.eTestQue.findAll({
+				where:{
+					qTestId:obj
+				}
+			}).then(function(data){
+				var QuestionsList = JSON.stringify(data);
+				// for (var i = QuestionsList.length - 1; i >= 0; i--) {
+				// 	QuestionsList[i];
+				// };
+
+			});
+		console.log("hihihiih"+obj);
+		});
+
+
+
 });
+
 
 db.sequelize.sync().then(function(){
 		http.listen('3000',function(){

@@ -14,8 +14,11 @@ socket.on('giveTests',function(obj){
 	
 })
 $( "#TestSet" ).change(function() {
-  alert( "Handler for .click() called." );
+ // alert( "Handler for .click() called." + $("#TestSet").val());
   $("#TestSet").prop("disabled",true);
+  socket.emit('populateTest',$("#TestSet").val());
+  alert('emit');
+  
 });
 //Handles submitting a new message
 
