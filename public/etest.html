@@ -15,6 +15,16 @@
     font-size: 9.75pt;
     float: right;
 }
+.TestWindow{
+    border-top: 3px solid #d6d6d6;
+    border-right: 3px solid #d6d6d6;
+    border-left: 3px solid #d6d6d6;
+    border-bottom: 3px solid #d6d6d6;
+    border-style: solid;
+    height: 90%;
+    width: 79%;
+    border-radius: 10px;
+}
 .NavPn{
 	width:20%;
 	font-family: Segoe UI,Helvetica,Arial,sans-serif;
@@ -57,7 +67,7 @@
     display: block;
     float: left;
     height: 20px;
-    width: 50px;
+    width: auto;
     padding: 3px 8px;
     vertical-align: text-bottom;
     white-space: nowrap;
@@ -67,8 +77,28 @@
   transition-duration: 0.2s;
   transition-timing-function: linear;
 }
+
 #aLogOff:hover{
 	 background-color: #FFE4C4;
+      border-radius: 4px;
+}
+.QuestionWindow{
+    height: auto;
+    width: 100%;
+}
+.QuestionWindow #Ques {
+    margin-left: 5px;
+}
+.OptionWindow{
+    height: 50%;
+    width: 100%;
+}
+.QuestionNavBar{
+    height:13%;
+}
+.QuestionNavBar #aLogOff{
+    
+    float:right;
 }
 </style>
 </head>
@@ -91,12 +121,32 @@
 <div class="center">
 
   <p><b> </b>Welcome to E Testing Web App</p>
-  <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(&quot;_e_onclick&quot;), event)" _e_onclick="logOff();">
-					<span class="userTileTxt">sign out</span>
-				</a>
-                <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(&quot;_e_onclick&quot;), event)" _e_onclick="logOff();">
-                    <span class="userTileTxt">end test</span>
-                </a>
+
+  <div id="TestWindow" class="TestWindow">
+  <input type="hidden" id="Qid" value="1">
+        <div id="QuestionWindow" class = "QuestionWindow">
+        <p class="TextArea" id="Ques">
+        </p>            
+        </div>
+        <div id="OptionWindow" class="OptionWindow">
+
+        </div>
+        <div id="QuestionNavBar" class="QuestionNavBar">
+    <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(&quot;_e_onclick&quot;), event)" _e_onclick="logOff();">
+    <span class="userTileTxt">next</span>
+    </a>
+    <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(&quot;_e_onclick&quot;), event)" _e_onclick="logOff();">
+    <span class="userTileTxt">previous</span>
+    </a>
+    </div>
+  </div>
+
+  <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(_e_onclick), event)" _e_onclick="logOff();">
+	<span class="userTileTxt">sign out</span>
+    </a>
+    <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(&quot;_e_onclick&quot;), event)" _e_onclick="logOff();">
+    <span class="userTileTxt">end test</span>
+    </a>
 </div>
 </div>
 <script src="/js/jquery-2.2.0.min.js"></script>

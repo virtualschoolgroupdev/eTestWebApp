@@ -4,7 +4,7 @@ var app = express();
 var createTest = require('./lib/createTest.js');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
+var Q = [];
 var qArray = [];
 app.use(express.static(__dirname+'/public'));
 app.get('/home',function(req,res){
@@ -45,18 +45,52 @@ res.send("We got this test!");
 		});
 
 		socket.on('populateTest',function(obj){
-			db.eTestQue.findAll({
+			var TestSet  = [];
+			var setQ = db.eTestQue.findAll({
 				where:{
 					qTestId:obj
 				}
 			}).then(function(data){
-				var QuestionsList = JSON.stringify(data);
-				// for (var i = QuestionsList.length - 1; i >= 0; i--) {
-				// 	QuestionsList[i];
-				// };
+			
+			var QuestionsList = JSON.stringify(data);
+			QuestionsList = JSON.parse(QuestionsList);
+			 for (var i=0; i<= QuestionsList.length - 1;i++) {
+			 
+			 	var id = QuestionsList[i].qQuestionId;
+			 	db.sequelize.query('SELECT * FROM options, questions WHERE questions.id = options.qQuestionId and questions.id =  '+ id).then(function(data){
+								
+								var OptionsList = JSON.stringify(data);
+								OptionsList = JSON.parse(OptionsList);
+								var optionsSet = [];
+								var obj1 = {};
+								
+									for (var i = OptionsList[0].length - 1; i >= 0; i--) {
+										
+										optionsSet.push(OptionsList[0][i].qOptionText);
+										if(i == 0){
+											obj1.qText = OptionsList[0][i].qText.trim();
+											obj1.id = OptionsList[0][i].qQuestionId;
+										}
 
+									};
+			 				 	 obj1.optionSet = optionsSet;
+
+			 				 	 optionsSet = [];
+			 				 	 //console.log(obj1);
+								 TestSet.push(obj1);
+							});
+
+			 	
+			 };
 			});
-		console.log("hihihiih"+obj);
+
+			setTimeout(function(){
+				socket.emit('giveTestSet',{
+					ts:JSON.stringify(TestSet)
+				}) ;
+			},1500);
+			
+		
 		});
 
 
