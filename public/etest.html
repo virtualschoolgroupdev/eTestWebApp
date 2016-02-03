@@ -12,7 +12,7 @@
     width:60%;
     right: 5%;
     font-family: Segoe UI,Helvetica,Arial,sans-serif;
-    font-size: 9.75pt;
+    font-size: 12pt;
     float: right;
 }
 .TestWindow{
@@ -100,6 +100,19 @@
     
     float:right;
 }
+#endTestContent{
+
+    background-color: aliceblue;
+    height: 95%;
+    display: block;
+    margin: 5px 5px 5px;
+    border-radius: 5px;
+    display: none;
+}
+#quesContent{
+    display: inline-block;
+    display: none;
+}
 </style>
 </head>
 <body>
@@ -113,7 +126,7 @@
 <div class="NavPn">
 
 <select id="TestSet" name="testSet">
-    <option>Select Test</option>
+    
 </select>
 
 
@@ -123,7 +136,8 @@
   <p><b> </b>Welcome to E Testing Web App</p>
 
   <div id="TestWindow" class="TestWindow">
-  <input type="hidden" id="Qid" value="1">
+  <div id="quesContent">
+  <input type="hidden" id="Qid" value="">
         <div id="QuestionWindow" class = "QuestionWindow">
         <p class="TextArea" id="Ques">
         </p>            
@@ -132,19 +146,23 @@
 
         </div>
         <div id="QuestionNavBar" class="QuestionNavBar">
-    <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(&quot;_e_onclick&quot;), event)" _e_onclick="logOff();">
+    <a id="aLogOff" href="#" onclick="showNext()" _e_onclick="logOff();">
     <span class="userTileTxt">next</span>
     </a>
-    <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(&quot;_e_onclick&quot;), event)" _e_onclick="logOff();">
+    <a id="aLogOff" href="#" onclick="showPrev()" _e_onclick="logOff();">
     <span class="userTileTxt">previous</span>
     </a>
     </div>
+    </div>
+    <div id="endTestContent" >
+    Test Ends !
+    </div>
   </div>
 
-  <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(_e_onclick), event)" _e_onclick="logOff();">
+  <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(_e_onclick), event)" >
 	<span class="userTileTxt">sign out</span>
     </a>
-    <a id="aLogOff" href="#" onclick="_e(this,this.getAttribute(&quot;_e_onclick&quot;), event)" _e_onclick="logOff();">
+    <a id="aLogOff" class="endTestBtn" href="#" onclick="eraseTest()" style="display:none" >
     <span class="userTileTxt">end test</span>
     </a>
 </div>

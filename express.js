@@ -44,6 +44,9 @@ res.send("We got this test!");
 
 		});
 
+		socket.on('resultMaker',function(obj){
+			console.log(obj);
+		});
 		socket.on('populateTest',function(obj){
 			var TestSet  = [];
 			var setQ = db.eTestQue.findAll({
