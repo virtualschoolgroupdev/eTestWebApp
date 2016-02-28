@@ -33,6 +33,7 @@ socket.on('giveTestSet',function(obj){
 	setQuestionDiv(s[0])
 	localStorage.setItem('dataset',obj.ts);
 	localStorage.setItem("resultSet",[]);
+	$("#resultTotal-end").text("0")
 	
 });
 
@@ -42,7 +43,7 @@ socket.on('giveResultTotal',function(obj){
 	
 	var s=jQuery.parseJSON(obj.resultTotal);
 	//console.log(s);
-	$("#resultTotal-end").text(s)
+	$("#resultTotal-end").text(s);
 	
 });
 
