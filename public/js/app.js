@@ -36,6 +36,16 @@ socket.on('giveTestSet',function(obj){
 	
 });
 
+socket.on('giveResultTotal',function(obj){
+	
+	//console.log(obj.ts);
+	
+	var s=jQuery.parseJSON(obj.resultTotal);
+	//console.log(s);
+	$("#resultTotal-end").text(s)
+	
+});
+
 
 function setQuestionDiv(s){
 

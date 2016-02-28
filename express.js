@@ -44,8 +44,45 @@ res.send("We got this test!");
 
 		});
 
-		socket.on('resultMaker',function(obj){
-			console.log(obj);
+		socket.on('resultMaker',function(resultSet){
+			//console.log(resultSet);
+			var QuestionsList = JSON.stringify(resultSet);
+			QuestionsList = JSON.parse(QuestionsList);
+			var resultTotal = 0;
+			var dbAnswers = [];
+			var id = " " ;
+			for (var i=0; i<= QuestionsList.length - 1;i++) {
+			 			//var studAnswer = (QuestionsList[i].answer);
+			 			if(i ==0)
+			 				id = (QuestionsList[i].qid);
+			 			else
+			 			 id = id + "," + (QuestionsList[i].qid);
+			 	}
+			 	
+			 	db.sequelize.query("SELECT qQuestionId,qAnswerOptionId from answers where qQuestionId IN ("+ id+")").then(function(data){
+			 				
+			 				
+			 				dbAnswers.push(data[0]);
+			 				
+			 			}).then(function(){
+//			 				console.log(dbAnswers);
+
+			 				for (var i=0; i<= QuestionsList.length - 1;i++) {
+			 			//var studAnswer = (QuestionsList[i].answer);
+			 				if(QuestionsList[i].qid == dbAnswers[0][i].qQuestionId 
+			 					&& QuestionsList[i].answer ==  dbAnswers[0][i].qAnswerOptionId){
+                                   resultTotal = resultTotal + 1;
+			 				}
+			 					
+			 			}
+
+			 			socket.emit('giveResultTotal',{
+								resultTotal:JSON.stringify(resultTotal)
+						}) ;
+
+			 	});
+
+			 	
 		});
 		socket.on('populateTest',function(obj){
 			var TestSet  = [];
