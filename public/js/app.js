@@ -30,7 +30,7 @@ socket.on('giveTestSet',function(obj){
 	
 	var s=jQuery.parseJSON(obj.ts);
 	console.log(s);
-	setQuestionDiv(s[0])
+	setQuestionDiv(s[0],0)
 	localStorage.setItem('dataset',obj.ts);
 	localStorage.setItem("resultSet",[]);
 	$("#resultTotal-end").text("0")
@@ -48,12 +48,13 @@ socket.on('giveResultTotal',function(obj){
 });
 
 
-function setQuestionDiv(s){
+function setQuestionDiv(s,index){
 
 {
 	var $QuestionWindow = jQuery('#QuestionWindow');
 	var $Qp = jQuery('#OptionWindow');
 	var $Qid = jQuery('#Qid');
+	var $Sid = jQuery('#Sid');
 
 	$QuestionWindow.find('p').text(s.qText);
 	var opttions = s.optionSet;
@@ -62,6 +63,7 @@ function setQuestionDiv(s){
 	jQuery.each(opttions,function(i,value){
 		console.log(s.id);
 		$Qid.val(s.id);
+		$Sid.val(index);
 		$Qp.append('<input type="radio" id="answers" name="answers" value="'+value+'">'+value+'<br>');
 	
 	});
@@ -71,7 +73,9 @@ function setQuestionDiv(s){
 
 function showNext(){
 	var $Qid = jQuery('#Qid');
+	var $Sid = jQuery('#Sid');
 	var i = parseInt($Qid.val());
+	var curr_index = parseInt($Sid.val());
 	var answer = ($( "input:radio[name=answers]:checked").val());
 	var resultSet= localStorage.getItem("resultSet");
 	var avar = {};
@@ -93,11 +97,11 @@ function showNext(){
 	else
 		index = i;
 	
-	if(index >= 10){
+	if(curr_index+1 >= s.length){
 		eraseTest();
 	}
 	else
-	setQuestionDiv(s[index]);
+	    setQuestionDiv(s[curr_index+1],curr_index+1);
 	//console.log(i+1);
 	//alert("hello");
 }

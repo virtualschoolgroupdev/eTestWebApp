@@ -91,7 +91,7 @@ res.send("We got this test!");
 					qTestId:obj
 				}
 			}).then(function(data){
-			
+			console.log(data);
 			var QuestionsList = JSON.stringify(data);
 			QuestionsList = JSON.parse(QuestionsList);
 			 for (var i=0; i<= QuestionsList.length - 1;i++) {
@@ -116,19 +116,24 @@ res.send("We got this test!");
 			 				 	 obj1.optionSet = optionsSet;
 
 			 				 	 optionsSet = [];
-			 				 	 //console.log(obj1);
+			 				 	
 								 TestSet.push(obj1);
 							});
 
 			 	
 			 };
-			});
-
-			setTimeout(function(){
+			}).then(function(){
+                    
+				setTimeout(function(){
+					console.log(TestSet);
 				socket.emit('giveTestSet',{
 					ts:JSON.stringify(TestSet)
 				}) ;
 			},1500);
+
+			});
+
+			
 			
 		
 		});
