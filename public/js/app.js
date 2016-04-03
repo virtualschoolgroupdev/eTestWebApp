@@ -13,13 +13,16 @@ socket.on('giveTests',function(obj){
 	});
 	
 });
-$( "#TestSet" ).click(function() {
- 
+$( window ).load(function() {
+ var full_url = document.URL; // Get current url
+ //console.log(full_url);
+var currentTestNAME = full_url.split('id=')[1].split('#')[0];
+currentTestNAME =(decodeURIComponent(currentTestNAME));
   $("#TestSet").prop("disabled",true);
   $("#quesContent").toggle();
   $(".endTestBtn").toggle();
   $("#endTestContent").toggle(false);
-  socket.emit('populateTest',$("#TestSet").val());
+  socket.emit('populateTest',currentTestNAME);
   
 });
 
@@ -118,7 +121,11 @@ function eraseTest(){
 }
 
 function showPrev(eventInitiator){
-	alert("Not allowed in current test");
+	alert("Not valid");
+}
+function closeMe()
+{
+    alert("Thanks! Please close this window");
 }
 //Handles submitting a new message
 
