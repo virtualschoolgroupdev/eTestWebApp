@@ -118,7 +118,7 @@ function eraseTest(){
 }
 
 function showPrev(eventInitiator){
-	alert("hello");
+	alert("Not allowed in current test");
 }
 //Handles submitting a new message
 

@@ -144,7 +144,7 @@ res.send("We got this test!");
 
 
 db.sequelize.sync().then(function(){
-		http.listen('3000',function(){
+		http.listen('8080',function(){
 		console.log("Express is listening");
 	});
 });
