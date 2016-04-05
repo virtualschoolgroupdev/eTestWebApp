@@ -86,9 +86,17 @@ res.send("We got this test!");
 		});
 		socket.on('populateTest',function(obj){
 			var TestSet  = [];
-			var setQ = db.eTestQue.findAll({
+			db.eTest.findAll({
+				  where: {
+				    qFileName:obj
+				  }
+			}).then(function(obj){
+				console.log("----------------------------------");
+				var idFromDb =(JSON.parse(JSON.stringify(obj))[0].id);
+			console.log(idFromDb);
+		db.eTestQue.findAll({
 				where:{
-					qTestId:obj
+					qTestId:idFromDb
 				}
 			}).then(function(data){
 			console.log(data);
@@ -133,7 +141,7 @@ res.send("We got this test!");
 
 			});
 
-			
+			});
 			
 		
 		});
