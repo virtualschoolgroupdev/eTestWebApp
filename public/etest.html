@@ -61,6 +61,7 @@
 }
 #aLogOff {
     margin-right: 10px;
+    margin-left: 2px;
 }
 
 #aLogOff:hover{
@@ -80,9 +81,9 @@
 .QuestionNavBar{
     height:13%;
 }
-.QuestionNavBar #aLogOff{
+.QuestionNavBar {
     
-    float:right;
+    
 }
 #endTestContent{
 
@@ -126,21 +127,25 @@
         <div id="OptionWindow" class="OptionWindow">
 
         </div>
-        <div id="QuestionNavBar" class="QuestionNavBar">
-    <a id="aLogOff" href="#" onclick="showNext()" class="btn btn-primary btn-lg" style="padding-right:10px;">
-    next
-    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a hidden id="aLogOff" href="#" onclick="showPrev()" class="btn btn-primary btn-lg">
-    previous
-    </a>
+       
     </div>
-    </div>
+
     <div id="endTestContent" >
     Test Ends !<br>
     Total Scored = <p id="resultTotal-end"><p>
     </div>
   </div>
+
+  <div id="QuestionNavBar" class="QuestionNavBar">
+    <a id="aLogOff" href="#" onclick="showNext()" class="btn btn-primary btn-lg" style="">
+    next
+    </a>
+   
+    </div>
+
 </div>
+
+ 
 
 <div class="jumbotron">
   <a id="aLogOff" href="#" class="btn btn-primary btn-lg" onclick="closeMe()" >
