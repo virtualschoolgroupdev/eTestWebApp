@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="css/bootstrap.min.css" rel="stylesheet">
 <style>
 .center {
   	position: absolute;
@@ -59,27 +60,11 @@
     background: transparent url("headerbgmain.png") no-repeat left top;
 }
 #aLogOff {
-    cursor: pointer;
-    color: #403a2d;
-    border: solid 1px transparent;
-    text-decoration: none;
-    display: block;
-    float: left;
-    height: 20px;
-    width: auto;
-    padding: 3px 8px;
-    vertical-align: text-bottom;
-    white-space: nowrap;
-    overflow: hidden;
-    background-color: transparent;
-  transition-property: background-color;
-  transition-duration: 0.2s;
-  transition-timing-function: linear;
+    margin-right: 10px;
 }
 
 #aLogOff:hover{
-	 background-color: #FFE4C4;
-      border-radius: 4px;
+	 
 }
 .QuestionWindow{
     height: auto;
@@ -115,12 +100,7 @@
 </style>
 </head>
 <body>
-<div id="divBackgroundImage">
-	<div id="divBackgroundImageMain">
-		
-	</div>
-	
-</div>
+
 <div id="MainPg">
 <div hidden class="NavPn">
 
@@ -133,24 +113,25 @@
 <div class="center">
 
   <p><b> </b>Welcome to E Testing Web App <h5><b>Beta</b></h5></p>
-
-  <div id="TestWindow" class="TestWindow">
+<div class="jumbotron">
+  
+  <div id="TestWindow" class="well TestWindow">
   <div id="quesContent">
   <input type="hidden" id="Qid" value="">
   <input type="hidden" id="Sid" value="">
         <div id="QuestionWindow" class = "QuestionWindow">
-        <p class="TextArea" id="Ques">
+        <p class="TextArea1" id="Ques">
         </p>            
         </div>
         <div id="OptionWindow" class="OptionWindow">
 
         </div>
         <div id="QuestionNavBar" class="QuestionNavBar">
-    <a id="aLogOff" href="#" onclick="showNext()" _e_onclick="logOff();">
-    <span class="userTileTxt">next</span>
-    </a>
-    <a hidden id="aLogOff" href="#" onclick="showPrev()" _e_onclick="logOff();">
-    <span class="userTileTxt">previous</span>
+    <a id="aLogOff" href="#" onclick="showNext()" class="btn btn-primary btn-lg" style="padding-right:10px;">
+    next
+    </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a hidden id="aLogOff" href="#" onclick="showPrev()" class="btn btn-primary btn-lg">
+    previous
     </a>
     </div>
     </div>
@@ -159,13 +140,17 @@
     Total Scored = <p id="resultTotal-end"><p>
     </div>
   </div>
+</div>
 
-  <a id="aLogOff" href="#" onclick="closeMe()" >
+<div class="jumbotron">
+  <a id="aLogOff" href="#" class="btn btn-primary btn-lg" onclick="closeMe()" >
 	<span class="userTileTxt">sign out</span>
     </a>
-    <a id="aLogOff" class="endTestBtn" href="#" onclick="eraseTest()" style="display:none" >
+    <a id="aLogOff" class="btn btn-primary btn-lg endTestBtn" href="#" onclick="eraseTest()" style="display:none" >
     <span class="userTileTxt">end test</span>
     </a>
+</div>
+
 </div>
 </div>
 <script src="/js/jquery-2.2.0.min.js"></script>
