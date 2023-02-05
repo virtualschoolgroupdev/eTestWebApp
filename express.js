@@ -28,7 +28,7 @@ objTest.qPackage = packageName;
 objTest.qChapter = chapter;
 objTest.qFileName = fileName;
 createTest.setTest(objTest,test,db);
-
+console.log(classNum + "--" + Doi)
 res.send("We got this test!");
 });
 
